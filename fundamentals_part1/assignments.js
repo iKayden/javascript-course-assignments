@@ -32,24 +32,31 @@
 
 // ### Coding Challenge 3
 
-const averageScoreDolphins = Math.floor((96 + 18 + 89) / 3);
-const averageScoreKoalas = Math.floor((88 + 93 + 110) / 3);
-const minScore = 100;
+// const averageScoreDolphins = Math.floor((96 + 18 + 89) / 3);
+// const averageScoreKoalas = Math.floor((88 + 93 + 110) / 3);
+// const minScore = 100;
 
 
-if (averageScoreDolphins === averageScoreKoalas) {
-  console.log(`It's a tie between these two! Dolphins (${averageScoreDolphins}) and Koalas (${averageScoreKoalas})`);
+// if (averageScoreDolphins === averageScoreKoalas) {
+//   console.log(`It's a tie between these two! Dolphins (${averageScoreDolphins}) and Koalas (${averageScoreKoalas})`);
 
-  if (averageScoreDolphins <= minScore) {
-    console.log("Score is lower than required, so both teams are disqualified ");
-  } else {
-    console.log("Both teams scored higher than minimum score and will achieve rewards");
-  }
+//   if (averageScoreDolphins <= minScore) {
+//     console.log("Score is lower than required, so both teams are disqualified ");
+//   } else {
+//     console.log("Both teams scored higher than minimum score and will achieve rewards");
+//   }
 
-} else if (averageScoreDolphins > averageScoreKoalas && averageScoreDolphins >= minScore) {
-  console.log(`Dolphins(${averageScoreDolphins}) win the game over the Koalas (${averageScoreKoalas})! `);
-} else if (averageScoreKoalas > averageScoreDolphins && averageScoreKoalas >= minScore) {
-  console.log(`Koalas (${averageScoreKoalas}) win against Dolphins (${averageScoreDolphins})`);
-} else {
-  console.log("No one wins because they didn't reach the minimum score");
-}
+// } else if (averageScoreDolphins > averageScoreKoalas && averageScoreDolphins >= minScore) {
+//   console.log(`Dolphins(${averageScoreDolphins}) win the game over the Koalas (${averageScoreKoalas})! `);
+// } else if (averageScoreKoalas > averageScoreDolphins && averageScoreKoalas >= minScore) {
+//   console.log(`Koalas (${averageScoreKoalas}) win against Dolphins (${averageScoreDolphins})`);
+// } else {
+//   console.log("No one wins because they didn't reach the minimum score");
+// }
+
+
+// ### Coding Challenge 4
+
+const bill = 430;
+const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+const total = bill + tip;
