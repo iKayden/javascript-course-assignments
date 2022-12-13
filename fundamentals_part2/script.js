@@ -299,18 +299,35 @@ Your points are not included in the array of your class's points. For calculatin
 // console.log(test);
 
 // Calculating temperature amplitude
-function tempAmplitude(temps) {
-  let min = temps[0];
-  let max = temps[0];
-  temps.forEach(temp => {
-    if (typeof temp !== "number") return;
-    if (temp > max) max = temp;
-    if (temp < min) min = temp;
-  });
-  return max - min;
-};
+// function tempAmplitude(temps1, temps2) {
+//   const temps = [...temps1, ...temps2];
+//   let min = temps[0];
+//   let max = temps[0];
+//   temps.forEach(temp => {
+//     if (typeof temp !== "number") return;
+//     if (temp > max) max = temp;
+//     if (temp < min) min = temp;
+//   });
+//   return max - min;
+// };
 
-const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
+// const temperatures1 = [30, -2, -60, -1, 'error', 90, 130, 170, 150, 140, 90, 5];
+// const temperatures2 = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
 
-const test = tempAmplitude(temperatures);
-console.log(test);
+// const test = tempAmplitude(temperatures1, temperatures2);
+// console.log(test);
+
+const forecastMaxTemps1 = [17, 21, 23];
+const forecastMaxTemps2 = [12, 5, -5, 0, 4];
+
+function printForecast(temps) {
+  let printStr = "";
+  for (let i = 0; i < temps.length; i++) {
+    printStr += `... ${temps[i]}C* in ${i + 1} ${i + 1 === 1 ? "day" : "days"} `;
+  }
+  console.log(printStr);
+  return printStr;
+}
+
+printForecast(forecastMaxTemps1);
+printForecast(forecastMaxTemps2);
