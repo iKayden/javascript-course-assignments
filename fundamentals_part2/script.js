@@ -209,9 +209,30 @@ In this simple assignment you are given a number and have to make it negative. B
 // };
 
 //perfect func
-function removeChar(str) {
-  return str.slice(1, -1);
+// function removeChar(str) {
+//   return str.slice(1, -1);
+// }
+// const test = removeChar('eloquent'); // 'loquen'
+// console.log(test);
+// removeChar('lo'); // 'lo'
+
+
+/*You will be given an array a and a value x. All you need to do is check whether the provided array contains the value.
+
+Array can contain numbers or strings. X can be either.
+
+Return true if the array contains the value, false if not. */
+
+// function check(a, x) {
+//   return a.includes(x);
+// }
+// const test1 = check([66, 101], 66); // true
+// const test2 = check([101, 45, 75, 105, 99, 107], 107); //true
+
+// console.log(test1);
+// console.log(test2);
+
+// string reverse
+function solution(str) {
+  return str.split("").reverse().join("");
 }
-const test = removeChar('eloquent'); // 'loquen'
-console.log(test);
-removeChar('lo'); // 'lo'
