@@ -123,30 +123,56 @@ Timmy & Sarah think they are in love, but around where they live, they will only
 
 Write a function that will take the number of petals of each flower and return true if they are in love and false if they aren't.
 */
+//My function
+// function lovefunc(flower1, flower2) {
+//   // moment of truth
+//   if (flower1 % 2 === 0 && flower2 % 2 === 0) {
+//     return false;
+//   } else if (flower1 % 2 === 0 && flower2 % 2 === 1) {
+//     return true;
+//   } else if (flower2 % 2 === 0 && flower1 % 2 === 1) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
-function lovefunc(flower1, flower2) {
-  // moment of truth
-  if (flower1 % 2 === 0 && flower2 % 2 === 0) {
-    return false;
-  } else if (flower1 % 2 === 0 && flower2 % 2 === 1) {
-    return true;
-  } else if (flower2 % 2 === 0 && flower1 % 2 === 1) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// Perfect Function
+// function lovefunc(flower1, flower2) {
+//   return flower1 % 2 !== flower2 % 2;
+// }
 
-const randNum1 = Math.floor(Math.random() * 100);
-// console.log("num 1 ", randNum1);
-const randNum2 = Math.floor(Math.random() * 100);
-// console.log("num 2 ", randNum2);
+// const randNum1 = Math.floor(Math.random() * 100);
+// // console.log("num 1 ", randNum1);
+// const randNum2 = Math.floor(Math.random() * 100);
+// // console.log("num 2 ", randNum2);
 
-const result = lovefunc(1, 4); //true
-const result2 = lovefunc(2, 2);// false
-const result3 = lovefunc(0, 1);// true
-const result4 = lovefunc(0, 0);// false
-const result5 = lovefunc(423, 612); //true
-const result6 = lovefunc(671, 114); //true
+// const result = lovefunc(1, 4); //true
+// const result2 = lovefunc(2, 2);// false
+// const result3 = lovefunc(0, 1);// true
+// const result4 = lovefunc(0, 0);// false
+// const result5 = lovefunc(423, 612); //true
+// const result6 = lovefunc(671, 114); //true
 
-console.log(result6);
+// console.log(result6);
+
+
+/*
+In this simple assignment you are given a number and have to make it negative. But maybe the number is already negative?
+*/
+
+//My function
+// function makeNegative(num) {
+//   if (num <= 0) {
+//     return num;
+//   };
+//   if (num > 0) {
+//     const negNum = '-' + num;
+//     return Number(negNum);
+//   }
+// }
+
+makeNegative(1);    // return -1
+makeNegative(-5);   // return -5
+makeNegative(0);    // return 0
+makeNegative(0.12); // return -0.12
