@@ -1,5 +1,7 @@
 'use strict'; // strict mode
 
+const assert = require('chai').assert;
+
 // Coding Challenge #1
 
 // const calcAverage = (score1, score2, score3) =>
@@ -172,7 +174,24 @@ In this simple assignment you are given a number and have to make it negative. B
 //   }
 // }
 
-makeNegative(1);    // return -1
-makeNegative(-5);   // return -5
-makeNegative(0);    // return 0
-makeNegative(0.12); // return -0.12
+//Perfect Function
+// function makeNegative(num) {
+//   return -Math.abs(num);
+// }
+
+// makeNegative(1);    // return -1
+// makeNegative(-5);   // return -5
+// makeNegative(0);    // return 0
+// makeNegative(0.12); // return -0.12
+
+/* Write a program that finds the summation of every number from 1 to num. The number will always be a positive integer greater than 0. */
+
+// const summation = function(num) {
+//   let outputNum = 0;
+//   for (let i = 1; i <= num; i++) {
+//     outputNum += i;
+//   }
+//   return outputNum;
+// };
+
+
