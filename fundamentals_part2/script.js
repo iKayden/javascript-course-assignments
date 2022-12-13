@@ -23,31 +23,64 @@
 
 //Coding challenge #2
 
-const calcTip = (bill) => {
-  let tip = 0;
-  if (bill >= 50 && bill <= 300) {
-    tip = bill * 0.15;
-    console.log(tip);
-  } else {
-    tip = bill * 0.20;
-    console.log(tip);
+// const calcTip = (bill) => {
+//   let tip = 0;
+//   if (bill >= 50 && bill <= 300) {
+//     tip = bill * 0.15;
+//     console.log(tip);
+//   } else {
+//     tip = bill * 0.20;
+//     console.log(tip);
+//   }
+//   return tip;
+// };
+
+// const calcTipTernary = bill =>
+//   bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
+
+// const bills = [125, 555, 44];
+
+// const tips = [
+//   calcTipTernary(bills[0]),
+//   calcTipTernary(bills[1]),
+//   calcTipTernary(bills[2]),
+// ];
+// console.log("tips arr", tips);
+
+// const total = [
+//   tips[0] + bills[0],
+//   tips[1] + bills[1],
+//   tips[2] + bills[2]
+// ];
+
+// console.log("Total arr: ", total);
+
+// Coding challenge #3
+
+const mark = {
+  fullName: ["Mark", "Miller"],
+  mass: 78,
+  height: 1.69,
+  BMI: function() {
+    return Math.round(this.mass / (this.height ** 2));
   }
-  return tip;
+};
+const john = {
+  fullName: ["John", "Smith"],
+  mass: 92,
+  height: 1.95,
+  BMI: function() {
+    return Math.round(this.mass / (this.height ** 2));
+  }
+};
+const kayden = {
+  fullName: "Kayden",
+  mass: 94,
+  height: 1.90,
+  BMI: function() {
+    return Math.round(this.mass / (this.height ** 2));
+  }
 };
 
-const bills = [125, 555, 44];
+console.log(`${mark.fullName[0]}'s BMI (${mark.BMI()}) is ${mark.BMI() > john.BMI() ? "higher than" : "lower than "}John's (${john.BMI()})`)
 
-const tips = [
-  calcTip(bills[0]),
-  calcTip(bills[1]),
-  calcTip(bills[2]),
-];
-console.log("tips arr", tips);
-
-const total = [
-  calcTip(bills[0]) + bills[0],
-  calcTip(bills[1]) + bills[1],
-  calcTip(bills[2]) + bills[2]
-];
-
-console.log("Total arr: ", total);
