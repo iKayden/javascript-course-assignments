@@ -247,18 +247,66 @@ if bmi <= 30.0 return "Overweight";
 
 if bmi > 30 return "Obese"; */
 
-function bmi(weight, height) {
-  const BMI = (weight / height ** 2).toFixed(1);
-  console.log(BMI);
-  if (BMI <= 18.5) {
-    return "Underweight";
-  } else if (BMI <= 25.0) {
-    return "Normal";
-  } else if (BMI <= 30.0) {
-    return "Overweight";
-  } else {
-    return "Obese";
-  }
-}
+// function bmi(weight, height) {
+//   const BMI = (weight / height ** 2).toFixed(1);
+//   console.log(BMI);
+//   if (BMI <= 18.5) {
+//     return "Underweight";
+//   } else if (BMI <= 25.0) {
+//     return "Normal";
+//   } else if (BMI <= 30.0) {
+//     return "Overweight";
+//   } else {
+//     return "Obese";
+//   }
+// }
 
-bmi(80, 1.80);// "Normal"
+// bmi(80, 1.80);// "Normal"
+
+// function simpleMultiplication(number) {
+//   return number % 2 === 0 ? number * 8 : number * 9;
+// }
+
+/* Your classmates asked you to copy some paperwork for them. You know that there are 'n' classmates and the paperwork has 'm' pages.
+
+Your task is to calculate how many blank pages do you need. If n < 0 or m < 0 return 0.*/
+
+// function paperwork(n, m) {
+//   if (n < 0 || m < 0) return 0;
+//   return n * m;
+// }
+//
+// const test = paperwork(5, -5); // 0
+// console.log(test);
+
+/* There was a test in your class and you passed it. Congratulations!
+But you're an ambitious person. You want to know if you're better than the average student in your class.
+
+You receive an array with your peers' test scores. Now calculate the average and compare your score!
+
+Return True if you're better, else False!
+
+Note:
+Your points are not included in the array of your class's points. For calculating the average point you may add your point to the given array! */
+
+
+// function betterThanAverage(classPoints, yourPoints) {
+//   let classAverage = 0 + yourPoints;
+//   classAverage = classPoints.reduce((i, current) => i + current, classAverage);
+//   return yourPoints > classAverage / (classPoints.length + 1) ? true : false;
+// }
+// const test = betterThanAverage([12, 23, 34, 45, 56, 67, 78, 89, 90], 9); //false
+// console.log(test);
+
+// Calculating temperature amplitude
+function tempAmplitude(arr) {
+  const numberArr = arr.filter(x => typeof x === "number");
+  const lowestTemp = Math.min(...numberArr);
+  const highestTemp = Math.max(...numberArr);
+  return Math.abs(highestTemp - lowestTemp);
+};
+
+const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
+
+const test = tempAmplitude(temperatures);
+console.log(test);
