@@ -61,26 +61,25 @@ const mark = {
   fullName: ["Mark", "Miller"],
   mass: 78,
   height: 1.69,
-  BMI: function() {
-    return Math.round(this.mass / (this.height ** 2));
+  calcBMI: function() {
+    this.BMI = Math.round(this.mass / (this.height ** 2));
+    return this.BMI;
   }
 };
 const john = {
   fullName: ["John", "Smith"],
   mass: 92,
   height: 1.95,
-  BMI: function() {
-    return Math.round(this.mass / (this.height ** 2));
-  }
-};
-const kayden = {
-  fullName: "Kayden",
-  mass: 94,
-  height: 1.90,
-  BMI: function() {
-    return Math.round(this.mass / (this.height ** 2));
+  calcBMI: function() {
+    this.BMI = Math.round(this.mass / (this.height ** 2));
+    return this.BMI;
   }
 };
 
-console.log(`${mark.fullName[0]}'s BMI (${mark.BMI()}) is ${mark.BMI() > john.BMI() ? "higher than" : "lower than "}John's (${john.BMI()})`)
+mark.calcBMI();
+john.calcBMI();
+
+console.log(
+  `${mark.fullName[0]}'s BMI (${mark.BMI}) is ${mark.BMI > john.BMI ? "higher than" : "lower than "}John's (${john.BMI})`
+)
 
