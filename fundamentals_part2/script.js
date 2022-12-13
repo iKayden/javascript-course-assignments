@@ -85,35 +85,35 @@
 
 // Coding challenge #4
 
-const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
 
-const tips = [];
-const totals = [];
+// const tips = [];
+// const totals = [];
 
-const calcTip = bill =>
-  bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
+// const calcTip = bill =>
+//   bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
 
-for (let i = 0; i < bills.length; i++) {
-  let tip = calcTip(bills[i]);
-  let total = tip + bills[i];
-  tips.push(tip);
-  totals.push(total);
-}
+// for (let i = 0; i < bills.length; i++) {
+//   let tip = calcTip(bills[i]);
+//   let total = tip + bills[i];
+//   tips.push(tip);
+//   totals.push(total);
+// }
 
-console.log(tips);
-console.log(totals);
+// console.log(tips);
+// console.log(totals);
 
-const calcAverage = arr => {
-  let allTotal = 0;
-  let i = 0;
-  while (i < arr.length) {
-    allTotal += arr[i];
-    i++;
-  }
-  console.log("total avr", allTotal / arr.length);
-  return allTotal / arr.length;
-};
+// const calcAverage = arr => {
+//   let allTotal = 0;
+//   let i = 0;
+//   while (i < arr.length) {
+//     allTotal += arr[i];
+//     i++;
+//   }
+//   console.log(`total avr is: $${allTotal / arr.length}`);
+//   return allTotal / arr.length;
+// };
 
-calcAverage(tips);
-calcAverage(bills);
-calcAverage(totals);
+// calcAverage(tips);
+// calcAverage(bills);
+// calcAverage(totals);
