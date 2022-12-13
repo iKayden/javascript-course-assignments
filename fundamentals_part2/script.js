@@ -102,3 +102,18 @@ for (let i = 0; i < bills.length; i++) {
 
 console.log(tips);
 console.log(totals);
+
+const calcAverage = arr => {
+  let allTotal = 0;
+  let i = 0;
+  while (i < arr.length) {
+    allTotal += arr[i];
+    i++;
+  }
+  console.log("total avr", allTotal / arr.length);
+  return allTotal / arr.length;
+};
+
+calcAverage(tips);
+calcAverage(bills);
+calcAverage(totals);
