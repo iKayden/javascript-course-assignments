@@ -1,7 +1,5 @@
 'use strict'; // strict mode
 
-const assert = require('chai').assert;
-
 // Coding Challenge #1
 
 // const calcAverage = (score1, score2, score3) =>
@@ -195,3 +193,25 @@ In this simple assignment you are given a number and have to make it negative. B
 // };
 
 
+/* It's pretty straightforward. Your goal is to create a function that removes the first and last characters of a string. You're given one parameter, the original string. You don't have to worry with strings with less than two characters. */
+
+// My Func
+// function removeChar(str) {
+//   if (str.length <= 2) {
+//     console.log(str);
+//     return "";
+//   }
+//   const arr = str.split("");
+//   arr.shift();
+//   arr.pop();
+//   const newStr = arr.join("");
+//   return newStr;
+// };
+
+//perfect func
+function removeChar(str) {
+  return str.slice(1, -1);
+}
+const test = removeChar('eloquent'); // 'loquen'
+console.log(test);
+removeChar('lo'); // 'lo'
