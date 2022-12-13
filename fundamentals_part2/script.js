@@ -299,11 +299,15 @@ Your points are not included in the array of your class's points. For calculatin
 // console.log(test);
 
 // Calculating temperature amplitude
-function tempAmplitude(arr) {
-  const numberArr = arr.filter(x => typeof x === "number");
-  const lowestTemp = Math.min(...numberArr);
-  const highestTemp = Math.max(...numberArr);
-  return Math.abs(highestTemp - lowestTemp);
+function tempAmplitude(temps) {
+  let min = temps[0];
+  let max = temps[0];
+  temps.forEach(temp => {
+    if (typeof temp !== "number") return;
+    if (temp > max) max = temp;
+    if (temp < min) min = temp;
+  });
+  return max - min;
 };
 
 const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
