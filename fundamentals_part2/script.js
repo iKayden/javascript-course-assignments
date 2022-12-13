@@ -233,6 +233,32 @@ Return true if the array contains the value, false if not. */
 // console.log(test2);
 
 // string reverse
-function solution(str) {
-  return str.split("").reverse().join("");
+// function solution(str) {
+//   return str.split("").reverse().join("");
+// }
+
+/* Write function bmi that calculates body mass index(bmi = weight / height2).;
+
+if bmi <= 18.5 return "Underweight";
+
+if bmi <= 25.0 return "Normal";
+
+if bmi <= 30.0 return "Overweight";
+
+if bmi > 30 return "Obese"; */
+
+function bmi(weight, height) {
+  const BMI = (weight / height ** 2).toFixed(1);
+  console.log(BMI);
+  if (BMI <= 18.5) {
+    return "Underweight";
+  } else if (BMI <= 25.0) {
+    return "Normal";
+  } else if (BMI <= 30.0) {
+    return "Overweight";
+  } else {
+    return "Obese";
+  }
 }
+
+bmi(80, 1.80);// "Normal"
