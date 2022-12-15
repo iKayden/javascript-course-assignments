@@ -317,17 +317,31 @@ Your points are not included in the array of your class's points. For calculatin
 // const test = tempAmplitude(temperatures1, temperatures2);
 // console.log(test);
 
-const forecastMaxTemps1 = [17, 21, 23];
-const forecastMaxTemps2 = [12, 5, -5, 0, 4];
+// const forecastMaxTemps1 = [17, 21, 23];
+// const forecastMaxTemps2 = [12, 5, -5, 0, 4];
 
-function printForecast(temps) {
-  let printStr = "";
-  for (let i = 0; i < temps.length; i++) {
-    printStr += `... ${temps[i]}C* in ${i + 1} ${i + 1 === 1 ? "day" : "days"} `;
-  }
-  console.log(printStr);
-  return printStr;
-}
+// function printForecast(temps) {
+//   let printStr = "";
+//   for (let i = 0; i < temps.length; i++) {
+//     printStr += `... ${temps[i]}C* in ${i + 1} ${i + 1 === 1 ? "day" : "days"} `;
+//   }
+//   console.log(printStr);
+//   return printStr;
+// }
 
-printForecast(forecastMaxTemps1);
-printForecast(forecastMaxTemps2);
+// printForecast(forecastMaxTemps1);
+// printForecast(forecastMaxTemps2);
+
+
+/* Write a function named setAlarm which receives two parameters. The first parameter, employed, is true whenever you are employed and the second parameter, vacation is true whenever you are on vacation.
+
+The function should return true if you are employed and not on vacation (because these are the circumstances under which you need to set an alarm). It should return false otherwise. Examples:
+
+setAlarm(true, true) -> false
+setAlarm(false, true) -> false
+setAlarm(false, false) -> false
+setAlarm(true, false) -> true */
+
+// function setAlarm(employed, vacation) {
+//   return employed && !vacation ? true : false;
+// }
