@@ -12,12 +12,18 @@ function closeModal() {
 function openModal() {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
-
 }
+
 for (const showBtn of showBtns) {
   showBtn.addEventListener("click", openModal);
 }
 
+// Close modal on click outside of it or close button inside
 closeBtn.addEventListener("click", closeModal);
-
 overlay.addEventListener("click", closeModal);
+
+document.addEventListener("keydown", function(e) {
+  if (e.code === "Escape" && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
