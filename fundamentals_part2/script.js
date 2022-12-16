@@ -407,15 +407,41 @@ For example, when an array is passed like [19, 5, 42, 2, 77], the output should 
 
 
 Note: a and b are not ordered! */
-function getSum(a, b) {
-  let min = Math.min(a, b);
-  let max = Math.max(a, b);
-  return (max - min + 1) * (min + max) / 2;
+// function getSum(a, b) {
+//   let min = Math.min(a, b);
+//   let max = Math.max(a, b);
+//   //gauss like formula for sum
+//   return (max - min + 1) * (min + max) / 2;
 
+// }
+
+// getSum(1, 1);//-- > 1(1 )
+// getSum(-1, 0);//-- > -1(-1 + 0 = -1)
+// getSum(-1, 2);//-- > 2(-1 + 0 + 1 + 2 = 2);
+
+// The Western Suburbs Croquet Club has two categories of membership, Senior and Open. They would like your help with an application form that will tell prospective members which category they will be placed.
+// To be a senior, a member must be at least 55 years old and have a handicap greater than 7. In this croquet club, handicaps range from -2 to +26; the better the player the lower the handicap.
+/*Input
+Input will consist of a list of pairs. Each pair contains information for a single potential member. Information consists of an integer for the person's age and an integer for the person's handicap.
+
+Output
+Output will consist of a list of string values (in Haskell and C: Open or Senior) stating whether the respective member is to be placed in the senior or open category.*/
+
+function openOrSenior(data) {
+  console.log(data);
+  const outputArr = [];
+  for (const datum of data) {
+    datum[0] >= 55 && datum[1] > 7 ?
+      outputArr.push("Senior") :
+      outputArr.push("Open");
+  }
+  return outputArr;
 }
 
+// input =  [[18, 20], [45, 2], [61, 12], [37, 6], [21, 21], [78, 9]]
+// output = ["Open",    "Open", "Senior", "Open",   "Open", "Senior"]
 
-
-getSum(1, 1);//-- > 1(1 )
-getSum(-1, 0);//-- > -1(-1 + 0 = -1)
-getSum(-1, 2);//-- > 2(-1 + 0 + 1 + 2 = 2);
+const test1 = openOrSenior([[45, 12], [55, 21], [19, -2], [104, 20]]); // ['Open', 'Senior', 'Open', 'Senior']
+const test2 = openOrSenior([[3, 12], [55, 1], [91, -2], [53, 23]]); // ['Open', 'Open', 'Open', 'Open'];
+console.log(test1);
+console.log(test2);
