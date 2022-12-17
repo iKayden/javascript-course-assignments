@@ -470,3 +470,18 @@ If the parameter is itself not a perfect square then -1 should be returned. You 
 // const test1 = findNextSquare(625); // --> 676
 // console.log(test1);
 // findNextSquare(114); //--> -1 since 114 is not a perfect square
+
+/* Given an array of ones and zeroes, convert the equivalent binary value to an integer.
+
+Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1. */
+
+// const binaryArrayToNumber = arr => Number.parseInt(arr.join(""), 2);
+
+// binaryArrayToNumber([0, 0, 0, 1]); // ==> 1;
+// binaryArrayToNumber([0, 0, 1, 0]); // ==> 2;
+// binaryArrayToNumber([0, 1, 0, 1]); // ==> 5;
+// binaryArrayToNumber([1, 0, 0, 1]); // ==> 9;
+// binaryArrayToNumber([0, 0, 1, 0]); // ==> 2;
+// binaryArrayToNumber([0, 1, 1, 0]); // ==> 6;
+// binaryArrayToNumber([1, 1, 1, 1]); // ==> 15;
+// binaryArrayToNumber([1, 0, 1, 1]); // ==> 11;
