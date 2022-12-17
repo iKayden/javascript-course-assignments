@@ -427,21 +427,46 @@ Input will consist of a list of pairs. Each pair contains information for a sing
 Output
 Output will consist of a list of string values (in Haskell and C: Open or Senior) stating whether the respective member is to be placed in the senior or open category.*/
 
-function openOrSenior(data) {
-  console.log(data);
-  const outputArr = [];
-  for (const datum of data) {
-    datum[0] >= 55 && datum[1] > 7 ?
-      outputArr.push("Senior") :
-      outputArr.push("Open");
-  }
-  return outputArr;
-}
+// My solution
+// function openOrSenior(data) {
+//   console.log(data);
+//   const outputArr = [];
+//   for (const datum of data) {
+//     datum[0] >= 55 && datum[1] > 7 ?
+//       outputArr.push("Senior") :
+//       outputArr.push("Open");
+//   }
+//   return outputArr;
+// }
+// Better Solution
+// function openOrSenior(data) {
+//   return data.map(([age, handicap]) => (age > 54 && handicap > 7) ? "Senior" : "Open");
+// }
 
-// input =  [[18, 20], [45, 2], [61, 12], [37, 6], [21, 21], [78, 9]]
-// output = ["Open",    "Open", "Senior", "Open",   "Open", "Senior"]
+// // input =  [[18, 20], [45, 2], [61, 12], [37, 6], [21, 21], [78, 9]]
+// // output = ["Open",    "Open", "Senior", "Open",   "Open", "Senior"]
 
-const test1 = openOrSenior([[45, 12], [55, 21], [19, -2], [104, 20]]); // ['Open', 'Senior', 'Open', 'Senior']
-const test2 = openOrSenior([[3, 12], [55, 1], [91, -2], [53, 23]]); // ['Open', 'Open', 'Open', 'Open'];
-console.log(test1);
-console.log(test2);
+// const test1 = openOrSenior([[45, 12], [55, 21], [19, -2], [104, 20]]); // ['Open', 'Senior', 'Open', 'Senior']
+// const test2 = openOrSenior([[3, 12], [55, 1], [91, -2], [53, 23]]); // ['Open', 'Open', 'Open', 'Open'];
+// console.log(test1);
+// console.log(test2);
+
+
+/* You might know some pretty large perfect squares. But what about the NEXT one?
+
+Complete the findNextSquare method that finds the next integral perfect square after the one passed as a parameter. Recall that an integral perfect square is an integer n such that sqrt(n) is also an integer.
+
+If the parameter is itself not a perfect square then -1 should be returned. You may assume the parameter is non-negative. */
+
+// function findNextSquare(sq) {
+//   let sqRoot = Math.sqrt(sq);
+//   if (Math.ceil(sqRoot) === Math.floor(sqRoot)) {
+//     return Math.pow((sqRoot + 1), 2);
+//   }
+//   return -1;
+// }
+
+// findNextSquare(121); // --> 144
+// const test1 = findNextSquare(625); // --> 676
+// console.log(test1);
+// findNextSquare(114); //--> -1 since 114 is not a perfect square
