@@ -485,3 +485,20 @@ Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1. */
 // binaryArrayToNumber([0, 1, 1, 0]); // ==> 6;
 // binaryArrayToNumber([1, 1, 1, 1]); // ==> 15;
 // binaryArrayToNumber([1, 0, 1, 1]); // ==> 11;
+
+/* DESCRIPTION:
+Simple, given a string of words, return the length of the shortest word(s).
+
+String will never be empty and you do not need to account for different data types. */
+// const findShort = (s) => {
+//   return Number(
+//     s.split(" ")
+//       .map(x => x.length)
+//       .sort((a, b) => a - b)
+//       .slice(0, 1)
+//   );
+// };
+// const test = findShort("bitcoin take over the world maybe who knows perhaps"); // 3
+// const test2 = findShort("Lisk LiteCoin Ethereum Steem LiteCoin DarkCoin Steem"); // 3
+// console.log(test);
+// console.log(test2);
