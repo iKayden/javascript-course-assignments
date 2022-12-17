@@ -21,23 +21,35 @@ function fizzBuzz() {
 // Somehow, the properties and keys of the object got mixed up
 // Swap the Javascript object's key with its values and return the resulting object
 // {a: 1 , b : 2, c: 3}    returns.  {1:"a", 2:"b", 3:"c"}
+const swapper = (object) => {
+  let outputObj = {};
+  for (const key in object) {
+    console.log();
+    outputObj[object[key]] = key;
+  }
+  console.log(outputObj);
+  return outputObj;
+};
 
+// swapper({ a: 1, b: 2, c: 3 });
 
-
-// //////
+//////
 
 // Given a number, print out a multiplication table up to and including that number
 
-// table(3)
+const multiplication = (n) => {
+  const output = [];
+  for (let i = 1; i <= n; i++) {
+    const insideArr = [];
+    for (let y = 0; y < n; y++) {
+      insideArr.push(i * y);
+    }
+    output.push(insideArr);
+  }
+  // console.log('output array', output);
+};
 
-//     1, 2, 3
-//  [
-// 1  [1, 2, 3],
-// 2  [2, 4, 6],
-// 3  [3, 6, 9],
-//  ]
-
-
+multiplication(4);
 // /////////
 
 
