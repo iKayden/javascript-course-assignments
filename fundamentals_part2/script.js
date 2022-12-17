@@ -502,3 +502,8 @@ String will never be empty and you do not need to account for different data typ
 // const test2 = findShort("Lisk LiteCoin Ethereum Steem LiteCoin DarkCoin Steem"); // 3
 // console.log(test);
 // console.log(test2);
+
+/* Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false. */
+
+// const boolToWord = bool => bool ? "Yes" : "No";
+// console.log(boolToWord(true)); // 'Yes';
