@@ -49,7 +49,7 @@ const multiplication = (n) => {
   // console.log('output array', output);
 };
 
-multiplication(4);
+// multiplication(4);
 // /////////
 
 
@@ -64,23 +64,25 @@ multiplication(4);
 
 // ///////
 
-// const drivers = {
-//     AgF4g: { name: 'Daniel Ricciardo', team: 'Renault F1 Team', cars: ['Toyota Corolla 2018', 'BMW M3', "F1"]},
-//     FfE4c: { name: 'Lando Norris', team: 'McLaren', cars: ['DB8', 'CLK489', 'F1']},
-//     Df4cf: { name: 'Sebastian Vettel', team: 'Ferrari', cars: ['BMW M3', 'F1']},
-//     I4fTw: { name: 'Nicholas Latifi', team: 'Renault F1 Team', cars: ['F1']},
-//     pT4vD: { name: 'Kimi Raikkonen', team: 'Alfa Romeo', cars: ['BMW M3', 'F1']},
-//     RaMfV: { name: 'Romain Grosjean', team: 'Ferrari', cars: ['Opel Cadet']},
-// }
+const drivers = {
+  AgF4g: { name: 'Daniel Ricciardo', team: 'Renault F1 Team', cars: ['Toyota Corolla 2018', 'BMW M3', "F1"] },
+  FfE4c: { name: 'Lando Norris', team: 'McLaren', cars: ['DB8', 'CLK489', 'F1'] },
+  Df4cf: { name: 'Sebastian Vettel', team: 'Ferrari', cars: ['BMW M3', 'F1'] },
+  I4fTw: { name: 'Nicholas Latifi', team: 'Renault F1 Team', cars: ['F1'] },
+  pT4vD: { name: 'Kimi Raikkonen', team: 'Alfa Romeo', cars: ['BMW M3', 'F1'] },
+  RaMfV: { name: 'Romain Grosjean', team: 'Ferrari', cars: ['Opel Cadet'] },
+};
 
 // Q1. Write a function to return an array of all the drivers names
-// const driverNames(obj) {
-// 	const output = []
-// 	for ( const driver in obj) {
-//     output.push(obj[driver].name)
-// 	}
-// return output
-// }
+const driverNames = (obj) => {
+  const output = [];
+  for (const driver in obj) {
+    output.push(obj[driver].name);
+  }
+  console.log('names', output);
+  return output;
+};
+// driverNames(drivers);
 
 // Q2. Write a function that returns an object with the key being Team Name and the value being the drivers for that team
 // const teamDrivers(obj) {

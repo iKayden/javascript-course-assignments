@@ -139,3 +139,13 @@ for (const [time, event] of gameEvents) {
   // console.log(`[${time < 48 ? "FIRST HALF" : "SECOND HALF"}] ${time}: ${event}`);
 }
 
+// const checkMiddleSeat = (seat) => {
+//   let s = seat.slice(-1);
+//   s = s === "B" || s === "E" ? "Middle Seat!😭😭😭" : "Lucky!🍀";
+//   console.log(s);
+//   return s;
+// };
+
+// checkMiddleSeat("11B");
+// checkMiddleSeat("1C");
+// checkMiddleSeat("3E");;
