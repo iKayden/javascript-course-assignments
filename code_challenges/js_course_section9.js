@@ -149,3 +149,14 @@ for (const [time, event] of gameEvents) {
 // checkMiddleSeat("11B");
 // checkMiddleSeat("1C");
 // checkMiddleSeat("3E");;
+
+// hiding all but four last numbers of a credit card
+const maskCreditCard = (n) => {
+  const str = n + "";
+  const last = str.slice(-4);
+  return last.padStart(str.length, "*");
+};
+
+// console.log(maskCreditCard(22121));;
+// console.log(maskCreditCard(121212131313122121));;
+// console.log(maskCreditCard('6867967456456546'));;

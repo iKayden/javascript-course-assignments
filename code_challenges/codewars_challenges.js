@@ -456,3 +456,18 @@ function accum(str) {
 // console.log(accum("RqaEzty")); // -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
 // console.log(accum("cwAt")); // -> "C-Ww-Aaa-Tttt"
 // console.log(Array(34).join("a"));
+
+// Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.
+function fakeBin(x) {
+  return x.split("").map(i => i < 5 ? 0 : 1).join("");
+}
+
+// console.log(fakeBin('45385593107843568'));// 01011110001100111
+// console.log(fakeBin('509321967506747'));// 101000111101101
+// console.log(fakeBin('366058562030849490134388085'));// 011011110000101010000011011
+
+// Get the list of integers for Codewars Leaderboard score (aka Honor) in descending order
+
+const getLeaderboardHonor = async () => {
+  // your code goes here
+};
