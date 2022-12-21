@@ -443,3 +443,16 @@ Implement a function that accepts 3 integer values a, b, c. The function should 
 // }
 // console.log(isTriangle(1, 2, 2)); //true;
 //console.log(isTriangle(7, 2, 2)); //false
+
+// accumulating letters
+function accum(str) {
+  return str.split("").map((el, i) => el.toUpperCase() + Array(i + 1).join(el.toLowerCase())).join("-");
+}
+
+// function accum(s) {
+// 	return s.split('').map((c, i) => (c.toUpperCase() + c.toLowerCase().repeat(i))).join('-');
+// }
+// console.log(accum("abcd")); // -> "A-Bb-Ccc-Dddd"
+// console.log(accum("RqaEzty")); // -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// console.log(accum("cwAt")); // -> "C-Ww-Aaa-Tttt"
+// console.log(Array(34).join("a"));
