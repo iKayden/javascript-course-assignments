@@ -160,3 +160,41 @@ const maskCreditCard = (n) => {
 // console.log(maskCreditCard(22121));;
 // console.log(maskCreditCard(121212131313122121));;
 // console.log(maskCreditCard('6867967456456546'));;
+
+
+// Coding Challenge #4
+
+/* Write a program that receives a list of variable names written in underscore_case
+and convert them to camelCase.
+The input will come from a textarea inserted into the DOM (see code below to
+insert the elements), and conversion will happen when the button is pressed */
+let counter = 1;
+const snakeToCamel = (str) => {
+  const [first, second] =
+    str
+      .toLowerCase()
+      .trim()
+      .split("_")
+      .map(el => {
+        const newEl = el[0].toUpperCase();
+        return el.replace();
+      });
+
+
+  const output = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
+
+  console.log(output.padEnd(20) + "✅");
+};
+
+snakeToCamel(" underscore_case");
+snakeToCamel("first_name  ");
+snakeToCamel("   Some_Variable");
+snakeToCamel("calculate_AGE ");
+snakeToCamel("delayed_departure");
+
+/* underscoreCase ✅
+firstName         ✅✅
+someVariable      ✅✅✅
+calculateAge      ✅✅✅✅
+delayedDeparture  ✅✅✅✅✅
+*/
