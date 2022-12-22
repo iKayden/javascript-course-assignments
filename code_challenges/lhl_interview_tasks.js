@@ -27,7 +27,6 @@ const swapper = (object) => {
     console.log();
     outputObj[object[key]] = key;
   }
-  console.log(outputObj);
   return outputObj;
 };
 
@@ -79,7 +78,6 @@ const driverNames = (obj) => {
   for (const driver in obj) {
     output.push(obj[driver].name);
   }
-  console.log('names', output);
   return output;
 };
 // driverNames(drivers);

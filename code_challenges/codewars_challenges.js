@@ -466,8 +466,11 @@ function fakeBin(x) {
 // console.log(fakeBin('509321967506747'));// 101000111101101
 // console.log(fakeBin('366058562030849490134388085'));// 011011110000101010000011011
 
-// Get the list of integers for Codewars Leaderboard score (aka Honor) in descending order
+// Convert number to reversed array of digits
+// Given a random non-negative number, you have to return the digits of this number within an array in reverse order.
 
-const getLeaderboardHonor = async () => {
-  // your code goes here
+function digitize(n) {
+  return String(n).split("").reverse().map(x => Number(x));
 };
+digitize(35231); // => [1,3,2,5,3]
+digitize(0); // => [0]
