@@ -186,11 +186,11 @@ const snakeToCamel = (str) => {
   console.log(output.padEnd(20) + "✅");
 };
 
-snakeToCamel(" underscore_case");
-snakeToCamel("first_name  ");
-snakeToCamel("   Some_Variable");
-snakeToCamel("calculate_AGE ");
-snakeToCamel("delayed_departure");
+// snakeToCamel(" underscore_case");
+// snakeToCamel("first_name  ");
+// snakeToCamel("   Some_Variable");
+// snakeToCamel("calculate_AGE ");
+// snakeToCamel("delayed_departure");
 
 /* underscoreCase ✅
 firstName         ✅✅
@@ -198,3 +198,18 @@ someVariable      ✅✅✅
 calculateAge      ✅✅✅✅
 delayedDeparture  ✅✅✅✅✅
 */
+
+// Data needed for a string method practice exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+
+const displayFlights = flights.split("+").forEach(el => {
+  const [status, from, to, time] = el.split(";");
+  const airportCode = (str) => str.slice(0, 3).toUpperCase();
+  const outStr = `${status.includes("Delayed") ?
+    status.replace("_", "🔴 ").replace("_", " ").padStart(20) :
+    status.replace("_", " ").replace("_", " ").padStart(20)
+    } from ${airportCode(from)} to ${airportCode(to)} (${time.replace(":", "h")})`;
+  console.log(outStr);
+});
