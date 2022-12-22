@@ -474,3 +474,16 @@ function digitize(n) {
 };
 digitize(35231); // => [1,3,2,5,3]
 digitize(0); // => [0]
+
+// Beginner Series #2 Clock
+
+// Clock shows h hours, m minutes and s seconds after midnight.
+// Your task is to write a function which returns the time since midnight in milliseconds.
+// h = 0 m = 1 s = 1
+const past = (h, m, s) => (h * 60 * 60 + m * 60 + s) * 1000;
+
+past(0, 1, 1); // 61000
+past(1, 1, 1); // 3661000
+past(0, 0, 0); // 0
+past(1, 0, 1); // 3601000
+past(1, 0, 0); // 3600000
