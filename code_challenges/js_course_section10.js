@@ -1,3 +1,4 @@
+"use strict";
 // Function that returns function
 const greet = (greeting) => (n) => console.log(`${greeting} ${n}`);
 // greet("Holla ")("amigo!");
@@ -71,10 +72,20 @@ const registerNewAnswer = function(n) {
   };
 };
 // 2. Call this method whenever the user clicks the "Answer poll" button.
-document.querySelector(".poll").addEventListener("click", registerNewAnswer);
+// document.querySelector(".poll").addEventListener("click", registerNewAnswer);
 /* 3. Create a method 'displayResults' which displays the poll results. The
 method takes a string as an input (called 'type'), which can be either 'string'
 or 'array'. If type is 'array', simply display the results array as it is, using
 console.log(). This should be the default option. If type is 'string', display a
 string like "Poll results are 13, 2, 4, 1". */
+
+// Immediately Invoked Function Expressions (IIFE)
+// #1
+// (function() {
+//   console.log("this IIFE will never log again");
+// })();
+// // #2
+// (() => console.log("this IIFE will never log again as well!"))();
+
+// Coding Challenge #2 Closures
 
