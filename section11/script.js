@@ -74,3 +74,16 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+let arr = ["a", "b", "c", "d", "e"];
+// SLICE - makes a copy without mutating an array
+// console.log(arr.slice(1, -2));
+// console.log(arr.slice());
+
+// SPLICE - mutates the array
+// console.log(arr.splice(2));
+// console.log(arr.splice(1, 2));
+// console.log(arr.splice(-1));
+// console.log(arr);
+
+// REVERSE mutates the original array
+// console.log('arr.reverse()', arr.reverse());
