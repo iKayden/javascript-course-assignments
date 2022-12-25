@@ -31,17 +31,15 @@ const checkDogs = function(arrJ, arrK) {
 // Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
 const calcAverageHumanAge = (dogAges) => {
   // 1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4
-  const humanYearsDog = dogAges.map(age => {
-    return age > 2 ? 16 + age * 4 : age * 2;
-  })
+  const humanYearsDog = dogAges.map(age => age > 2 ? 16 + age * 4 : age * 2)
     // 2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
-    .filter(humanYears => humanYears > 18);
+    .filter(humanYears => humanYears >= 18);
   console.log(humanYearsDog);
   // 3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
-  const avgDogAgeHumanYears = Math.round(humanYearsDog.reduce((prev, curr) => prev + curr, 0) / humanYearsDog.length);
-  console.log(`Average human age of all adult dogs is ${avgDogAgeHumanYears} years old`);
+  const averageYears = Math.round(humanYearsDog.reduce((prev, curr) => prev + curr, 0) / humanYearsDog.length);
+  console.log(`Average human age of all adult dogs is ${averageYears} years old`);
 
-  return humanYearsDog;
+  return averageYears;
 };
 // 4. Run the function for both test datasets
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
