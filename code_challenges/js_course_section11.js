@@ -17,13 +17,36 @@ const checkDogs = function(arrJ, arrK) {
   // 3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy 🐶 ");
   allDogs.forEach((dog, i) => {
     const isAdult = dog >= 3 ? "an adult 🐕" : "still a puppy 🐶";
-    console.log(`Dog number ${i + 1} is ${isAdult} and is ${dog} ${dog == 1 ? "year" : "years"} old.`);
+    // console.log(`Dog number ${i + 1} is ${isAdult} and is ${dog} ${dog == 1 ? "year" : "years"} old.`);
   });
-
-  console.log('------END OF THE LOOP RUN---------');
-
+  // console.log('------END OF THE LOOP RUN---------');
 };
-
 // 4. Run the function for both test datasets Test;
-const data1 = checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
-const data2 = checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+// const data1 = checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// const data2 = checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+
+// Coding Challenge #2
+
+// Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
+const calcAverageHumanAge = (dogAges) => {
+  // 1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4
+  const humanYearsDog = dogAges.map(age => {
+    return age > 2 ? 16 + age * 4 : age * 2;
+  })
+    // 2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
+    .filter(humanYears => humanYears > 18);
+  console.log(humanYearsDog);
+  // 3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+  const avgDogAgeHumanYears = Math.round(humanYearsDog.reduce((prev, curr) => prev + curr, 0) / humanYearsDog.length);
+  console.log(`Average human age of all adult dogs is ${avgDogAgeHumanYears} years old`);
+
+  return humanYearsDog;
+};
+// 4. Run the function for both test datasets
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// [36, 4, 32, 2, 76, 48, 28]
+// filtered [ 36, 32, 76, 48, 28 ]
+calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// [80, 40, 56, 36, 40, 2, 32]
+// filtered [ 80, 40, 56, 36, 40, 32 ]
