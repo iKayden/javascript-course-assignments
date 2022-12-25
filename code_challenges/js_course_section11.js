@@ -29,22 +29,44 @@ const checkDogs = function(arrJ, arrK) {
 // Coding Challenge #2
 
 // Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
-const calcAverageHumanAge = (dogAges) => {
+const calcAverageHumanAge1 = (dogAges) => {
   // 1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4
   const humanYearsDog = dogAges.map(age => age > 2 ? 16 + age * 4 : age * 2)
     // 2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
     .filter(humanYears => humanYears >= 18);
   console.log(humanYearsDog);
   // 3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
-  const averageYears = Math.round(humanYearsDog.reduce((prev, curr) => prev + curr, 0) / humanYearsDog.length);
+  const averageYears = Math.round(
+    humanYearsDog.reduce((prev, curr, i, arr) => prev + curr / arr.length, 0)
+  );
   console.log(`Average human age of all adult dogs is ${averageYears} years old`);
 
   return averageYears;
 };
 // 4. Run the function for both test datasets
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge1([5, 2, 4, 1, 15, 8, 3]);
+
 // [36, 4, 32, 2, 76, 48, 28]
 // filtered [ 36, 32, 76, 48, 28 ]
-calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// calcAverageHumanAge1([16, 6, 10, 5, 6, 1, 4]);
+
 // [80, 40, 56, 36, 40, 2, 32]
 // filtered [ 80, 40, 56, 36, 40, 32 ]
+
+// Coding Challenge #3
+
+// Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time
+// as an arrow function, and using chaining!
+const calcAverageHumanAge2 = (dogAges) =>
+  Math.round(
+    dogAges
+      .map(age => age > 2 ? 16 + age * 4 : age * 2)
+      .filter(humanYears => humanYears >= 18)
+      .reduce((prev, curr, i, arr) => prev + curr / arr.length, 0)
+  );
+
+// const test1 = calcAverageHumanAge2([5, 2, 4, 1, 15, 8, 3]);
+// const test2 = calcAverageHumanAge2([16, 6, 10, 5, 6, 1, 4]);
+
+// console.log(test1);
+// console.log(test2);
