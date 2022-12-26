@@ -70,3 +70,9 @@ const calcAverageHumanAge2 = (dogAges) =>
 
 // console.log(test1);
 // console.log(test2);
+
+//Array.from
+// generate array with 100 random die rolls
+const dieRolls100 = Array.from({ length: 100 }, () => Math.round(Math.random() * 100));
+console.log('rolls', dieRolls100);
+
