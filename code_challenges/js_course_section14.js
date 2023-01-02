@@ -28,15 +28,15 @@ const Car = function(make, speed) {
   this.make = make;
   this.speed = speed;
   console.log(`This is a ${this.make}, it moves at ${this.speed} km/h`);
-
-  this.accelerate = function() {
-    this.speed += 10;
-    console.log(`${this.make} speed is up to ${this.speed} km/h`);
-  };
-  this.brake = function() {
-    this.speed -= 5;
-    console.log(`${this.make} speed is down to ${this.speed} km/h`);
-  };
+};
+// Move functions into prototype methods
+Car.prototype.accelerate = function() {
+  this.speed += 10;
+  console.log(`${this.make} speed is up to ${this.speed} km/h`);
+};
+Car.prototype.brake = function() {
+  this.speed -= 5;
+  console.log(`${this.make} speed is down to ${this.speed} km/h`);
 };
 
 const bmw = new Car("BMW", 120);
