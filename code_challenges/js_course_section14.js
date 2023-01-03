@@ -109,17 +109,17 @@ account.latest = 55;
 // console.log(account.latest);
 
 // ------------ Object.create ----------
-const PersonProto = {
-  calcAge() { //constructor function
-    console.log(2023 - this.birthYear);
-  },
+// const PersonProto = {
+//   calcAge() { //constructor function
+//     console.log(2023 - this.birthYear);
+//   },
 
-  init(name, birthYear) {
-    this.name = name,
-      this.birthYear = birthYear,
-      console.log(this.name, this.birthYear);
-  }
-};
+//   init(name, birthYear) {
+//     this.name = name,
+//       this.birthYear = birthYear,
+//       console.log(this.name, this.birthYear);
+//   }
+// };
 
 // const person = Object.create(PersonProto); //links the empty obj to the Class proto inheritance
 // person.name = "Bot";
@@ -183,33 +183,33 @@ class CarCl {
 
 // Inheritance between Classes: Construction functions
 
-const Person = function(firstName, birthYear) { //Can't use arrow func
-  // Instance properties
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-};
+// const Person = function(firstName, birthYear) { //Can't use arrow func
+//   // Instance properties
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
 
-Person.prototype.calcAge = function(year = 2023) {
-  console.log(year - this.birthYear);
-};
+// Person.prototype.calcAge = function(year = 2023) {
+//   console.log(year - this.birthYear);
+// };
 
-const Student = function(firstName, birthYear, course) {
-  Person.call(this, firstName, birthYear);
-  this.course = course;
-};
+// const Student = function(firstName, birthYear, course) {
+//   Person.call(this, firstName, birthYear);
+//   this.course = course;
+// };
 
 // To link Person and Student prototypes. Student inherits from Person
 // do it before adding any extra prototypes
-Student.prototype = Object.create(Person.prototype); // {} will return an empty obj
+// Student.prototype = Object.create(Person.prototype); // {} will return an empty obj
 
-Student.prototype.introduce = function() { // {introduce} will fill it later
-  console.log(`My name is ${this.firstName}, I'm studying ${this.course}`);
-};
-Student.prototype.constructor = Student;
-const kay = new Student("Kay Kay", 1992, "Java Script");
-kay.introduce();
-kay.calcAge();
-console.log(kay.__proto__);
+// Student.prototype.introduce = function() { // {introduce} will fill it later
+//   console.log(`My name is ${this.firstName}, I'm studying ${this.course}`);
+// };
+// Student.prototype.constructor = Student;
+// const kay = new Student("Kay Kay", 1992, "Java Script");
+// kay.introduce();
+// kay.calcAge();
+// console.log(kay.__proto__);
 
 // Coding Challenge #3
 
@@ -234,9 +234,56 @@ EV.prototype.accelerate = function() {
 };
 
 // 4. Create an electric car object and experiment with calling methods
-const kayCar = new EV("Tesla", 120, 23);
-kayCar.accelerate();
-kayCar.chargeBattery(99);
-kayCar.accelerate();
-kayCar.brake();
-kayCar.accelerate();
+// const kayCar = new EV("Tesla", 120, 23);
+// kayCar.accelerate();
+// kayCar.chargeBattery(99);
+// kayCar.accelerate();
+// kayCar.brake();
+// kayCar.accelerate();
+
+// ---------- Inheritance between classes and constructor ES6
+class StudentCL extends PersonCL {
+  constructor(fullName, birthYear, course) {
+    // "super" call must happen first
+    super(fullName, birthYear); //constructor function of the parent class
+    this.course = course;
+  }
+
+  introduce() { // {introduce} will fill it later
+    console.log(`My name is ${this.fullName} and I am ${2023 - this.birthYear} studying ${this.course}`);
+  };
+  calcAge() {
+    console.log(`I'm ${2023 - this.birthYear} years old!`);
+  }
+}
+
+const bro = new StudentCL("Broseph Stallion", 2000, "Alpha Bro");
+bro.introduce();
+bro.calcAge();
+//--------- Using prototypes and Object.create to link inheritance
+const PersonProto = {
+  calcAge() { //constructor function
+    console.log(2023 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+    console.log(this.firstName, this.birthYear);
+  }
+};
+
+const steve = Object.create(PersonProto);
+const StudentProto = Object.create(PersonProto); //Student inherits from Person
+StudentProto.init = function(firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+const jay = Object.create(StudentProto);
+jay.init("Jay", 2010, "Rocket Science");
+
+StudentProto.introduce = function() { // {introduce} will fill it later
+  console.log(`My name is ${this.firstName}, I'm studying ${this.course}`);
+};
+jay.introduce();
+jay.calcAge(); // From Person Proto
