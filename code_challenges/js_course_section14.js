@@ -1,11 +1,11 @@
 "use strict";
 //Object Oriented Programming OOP with JS
 // Constructor function
-const Person = function(firstName, birthYear) { //Can't use arrow func
-  // Instance properties
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-};
+// const Person = function(firstName, birthYear) { //Can't use arrow func
+//   // Instance properties
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
 // 1 New obj is created
 // const kayden = new Person("Kayden", 1992);
 // 2 function is called, this = {}
@@ -14,9 +14,9 @@ const Person = function(firstName, birthYear) { //Can't use arrow func
 // 4 function automatically returns {obj}
 
 // Creating Prototypes
-Person.prototype.calcAge = function(year = 2023) {
-  console.log(year - this.birthYear);
-};
+// Person.prototype.calcAge = function(year = 2023) {
+//   console.log(year - this.birthYear);
+// };
 
 // kayden.calcAge(2022);
 
@@ -172,11 +172,71 @@ class CarCl {
 
 
 // 4. Create a new car and experiment with methods
-const myCar = new CarCl("Ford", 120);
-myCar.accelerate();
-myCar.brake();
-myCar.speedUS;
-myCar.currSpeed();
-myCar.speedUS = 100;
-myCar.speedUS;
-myCar.currSpeed();
+// const myCar = new CarCl("Ford", 120);
+// myCar.accelerate();
+// myCar.brake();
+// myCar.speedUS;
+// myCar.currSpeed();
+// myCar.speedUS = 100;
+// myCar.speedUS;
+// myCar.currSpeed();
+
+// Inheritance between Classes: Construction functions
+
+const Person = function(firstName, birthYear) { //Can't use arrow func
+  // Instance properties
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function(year = 2023) {
+  console.log(year - this.birthYear);
+};
+
+const Student = function(firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// To link Person and Student prototypes. Student inherits from Person
+// do it before adding any extra prototypes
+Student.prototype = Object.create(Person.prototype); // {} will return an empty obj
+
+Student.prototype.introduce = function() { // {introduce} will fill it later
+  console.log(`My name is ${this.firstName}, I'm studying ${this.course}`);
+};
+Student.prototype.constructor = Student;
+const kay = new Student("Kay Kay", 1992, "Java Script");
+kay.introduce();
+kay.calcAge();
+console.log(kay.__proto__);
+
+// Coding Challenge #3
+
+// 1. Use a constructor function to implement an Electric Car (EV) as a CHILD class of Car.
+// Make Car's inputs (make, currentSpeed + batteryCharge %)
+const EV = function(make, speed, charge = 0) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+
+};
+EV.prototype = Object.create(Car.prototype);
+// 2. Implement a "chargeBattery" method which takes an argument "ChargeTo" and sets the battery charge to "ChargeTo"
+EV.prototype.chargeBattery = function(chargeTo) {
+  this.charge = chargeTo;
+  console.log(`Your ${this.make} has been charged to ${this.charge}%`);
+};
+// 3. Implement an "accelerate" method that will increase the car's speed by 20 and decrease the charge by 1%. Then log a message (see).
+EV.prototype.accelerate = function() {
+  this.speed += 20;
+  this.charge--;
+  console.log(`${this.make} is going at ${this.speed} km/h, with a battery charge at ${this.charge}%`);
+};
+
+// 4. Create an electric car object and experiment with calling methods
+const kayCar = new EV("Tesla", 120, 23);
+kayCar.accelerate();
+kayCar.chargeBattery(99);
+kayCar.accelerate();
+kayCar.brake();
+kayCar.accelerate();
