@@ -287,3 +287,67 @@ StudentProto.introduce = function() { // {introduce} will fill it later
 };
 jay.introduce();
 jay.calcAge(); // From Person Proto
+
+// Bankist App Class -- Encapsulation Practice
+// Public / Private  Fields and Methods
+class Account {
+  // Public Fields (on the instances)
+  // locale = navigator.language;
+
+  // Private Fields (#)
+  #movements = [];
+  #pin;
+
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    // protected property (verbally)
+    this.#pin = pin;
+    // this._movements = []; //makes an empty array for all new instances
+    // this.locale = navigator.language;
+    console.log(`New Account: ${this.owner}, currency: ${this.currency}`);
+  }
+
+  // Public Interface / Public Methods (everywhere)
+  getMoves() {
+    return this.#movements;
+  }
+
+  deposit(val) {
+    this.#movements.push(val); // better way
+  }
+
+  withdrawal(val) {
+    this.deposit(-val);
+  }
+
+
+  requestLoan(val) {
+    if (this.approveLoan(val)) {
+      this.deposit(val);
+      console.log('Loan is approved');
+    }
+  }
+  // Private Methods
+  // #approveLoan(val) { // No Browser support
+  approveLoan(val) {
+    return true;
+  }
+
+  //static method (are not available on instances only on the class itself)
+  static helper() {
+    console.log('Beware my friend');
+  }
+}
+
+const acc1 = new Account("Kyrylo", "GRN", 1111);
+// acc1.movements.push(155);  // Not A good way
+// acc1.movements.push(-75); // Not A good way
+acc1.deposit(155);     // Better way to manipulate properties
+acc1.withdrawal(75); // Better way to manipulate properties
+acc1.requestLoan(1000);
+acc1.getMoves();
+Account.helper(); // static method
+
+// -----------Chaining Methods -------------
