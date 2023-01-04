@@ -145,10 +145,12 @@ class CarCl {
   accelerate = function() {
     this.speed += 10;
     console.log(`${this.make} speed is up to ${this.speed} km/h`);
+    return this;
   };
   brake = function() {
     this.speed -= 5;
     console.log(`${this.make} speed is down to ${this.speed} km/h`);
+    return this;
   };
   // 2. Add a getter called "speedUS"
   get speedUS() {
@@ -215,23 +217,23 @@ class CarCl {
 
 // 1. Use a constructor function to implement an Electric Car (EV) as a CHILD class of Car.
 // Make Car's inputs (make, currentSpeed + batteryCharge %)
-const EV = function(make, speed, charge = 0) {
-  Car.call(this, make, speed);
-  this.charge = charge;
+// const EV = function(make, speed, charge = 0) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
 
-};
-EV.prototype = Object.create(Car.prototype);
-// 2. Implement a "chargeBattery" method which takes an argument "ChargeTo" and sets the battery charge to "ChargeTo"
-EV.prototype.chargeBattery = function(chargeTo) {
-  this.charge = chargeTo;
-  console.log(`Your ${this.make} has been charged to ${this.charge}%`);
-};
-// 3. Implement an "accelerate" method that will increase the car's speed by 20 and decrease the charge by 1%. Then log a message (see).
-EV.prototype.accelerate = function() {
-  this.speed += 20;
-  this.charge--;
-  console.log(`${this.make} is going at ${this.speed} km/h, with a battery charge at ${this.charge}%`);
-};
+// };
+// EV.prototype = Object.create(Car.prototype);
+// // 2. Implement a "chargeBattery" method which takes an argument "ChargeTo" and sets the battery charge to "ChargeTo"
+// EV.prototype.chargeBattery = function(chargeTo) {
+//   this.charge = chargeTo;
+//   console.log(`Your ${this.make} has been charged to ${this.charge}%`);
+// };
+// // 3. Implement an "accelerate" method that will increase the car's speed by 20 and decrease the charge by 1%. Then log a message (see).
+// EV.prototype.accelerate = function() {
+//   this.speed += 20;
+//   this.charge--;
+//   console.log(`${this.make} is going at ${this.speed} km/h, with a battery charge at ${this.charge}%`);
+// };
 
 // 4. Create an electric car object and experiment with calling methods
 // const kayCar = new EV("Tesla", 120, 23);
@@ -311,15 +313,18 @@ class Account {
 
   // Public Interface / Public Methods (everywhere)
   getMoves() {
+    console.log(this.#movements);
     return this.#movements;
   }
 
   deposit(val) {
     this.#movements.push(val); // better way
+    return this; // Makes the method "chainable"
   }
 
   withdrawal(val) {
     this.deposit(-val);
+    return this; // Makes the method "chainable"
   }
 
 
@@ -328,6 +333,7 @@ class Account {
       this.deposit(val);
       console.log('Loan is approved');
     }
+    return this; // Makes the method "chainable"
   }
   // Private Methods
   // #approveLoan(val) { // No Browser support
@@ -344,10 +350,43 @@ class Account {
 const acc1 = new Account("Kyrylo", "GRN", 1111);
 // acc1.movements.push(155);  // Not A good way
 // acc1.movements.push(-75); // Not A good way
-acc1.deposit(155);     // Better way to manipulate properties
-acc1.withdrawal(75); // Better way to manipulate properties
-acc1.requestLoan(1000);
-acc1.getMoves();
+// acc1.deposit(155);     // Better way to manipulate properties
+// acc1.withdrawal(75); // Better way to manipulate properties
+// acc1.requestLoan(1000);
+// acc1.getMoves();
 Account.helper(); // static method
 
 // -----------Chaining Methods -------------
+acc1 // need to have return in every method (the account must be returned otherwise undefined)
+  .deposit(300)
+  .deposit(500)
+  .withdrawal(35)
+  .requestLoan(25000)
+  .withdrawal(5000)
+  .getMoves();
+
+
+// Coding Challenge #4
+// 1. Do CC #3 using ES6
+class EV extends Car {
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.charge = charge;
+  }
+  // 2. Make charge private
+  _chargeBattery(chargeTo) {
+    this.charge = chargeTo;
+    console.log(`Your ${this.make} has been charged to ${this.charge}%`);
+    return this;
+  }
+  // 3. Implement chaining on accelerate and chargeBattery. Update brake in the Car class
+  accelerate() {
+    this.speed += 20;
+    this.charge--;
+    console.log(`${this.make} is going at ${this.speed} km/h, with a battery charge at ${this.charge}%`);
+    return this;
+  };
+}
+// 4 Experiment
+const car1 = new EV("Rivian", 120, 23);
+car1._chargeBattery(90).accelerate().brake();
