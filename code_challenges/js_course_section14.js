@@ -142,16 +142,19 @@ class CarCl {
     this.speed = speed;
     console.log(`This is a ${this.make}, it moves at ${this.speed} km/h`);
   }
-  accelerate = function() {
+
+  accelerate() {
     this.speed += 10;
     console.log(`${this.make} speed is up to ${this.speed} km/h`);
     return this;
-  };
-  brake = function() {
+  }
+
+  brake() {
     this.speed -= 5;
     console.log(`${this.make} speed is down to ${this.speed} km/h`);
+    console.log('return brake: ', typeof this);
     return this;
-  };
+  }
   // 2. Add a getter called "speedUS"
   get speedUS() {
     const miles = this.speed / 1.6;
@@ -159,10 +162,10 @@ class CarCl {
     return miles;
   }
 
-  currSpeed = function() {
+  currSpeed() {
     console.log(`You are going at ${this.speed} km/h`);
     return;
-  };
+  }
 
   set currSpeed(s) { }
 
@@ -388,5 +391,5 @@ class EV extends Car {
   };
 }
 // 4 Experiment
-const car1 = new EV("Rivian", 120, 23);
-car1._chargeBattery(90).accelerate().brake();
+const rivian = new EV("Rivian", 120, 23);
+rivian._chargeBattery(90).accelerate().accelerate().brake()._chargeBattery(95).accelerate();
