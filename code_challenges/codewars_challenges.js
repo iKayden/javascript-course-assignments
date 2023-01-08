@@ -480,10 +480,27 @@ digitize(0); // => [0]
 // Clock shows h hours, m minutes and s seconds after midnight.
 // Your task is to write a function which returns the time since midnight in milliseconds.
 // h = 0 m = 1 s = 1
-const past = (h, m, s) => (h * 60 * 60 + m * 60 + s) * 1000;
+// const past = (h, m, s) => (h * 60 * 60 + m * 60 + s) * 1000;
 
-past(0, 1, 1); // 61000
-past(1, 1, 1); // 3661000
-past(0, 0, 0); // 0
-past(1, 0, 1); // 3601000
-past(1, 0, 0); // 3600000
+// past(0, 1, 1); // 61000
+// past(1, 1, 1); // 3661000
+// past(0, 0, 0); // 0
+// past(1, 0, 1); // 3601000
+// past(1, 0, 0); // 3600000
+
+
+// You get given the time in hours and you need to return the number of litres Nathan will drink, rounded to the smallest value. drinks 0.5 litres of water per hour of cycling.
+const litres = (time) => {
+  let litr = 0;
+  for (let i = 1; i <= time; i++) {
+    litr += 0.5;
+  }
+  return Math.floor(litr);
+};
+// litres(2); // 'should return 1 litre');
+// litres(1.4); // 'should return 0 litres');
+// litres(12.3); // 'should return 6 litres');
+// litres(0.82); // 'should return 0 litres');
+// litres(11.8); // 'should return 5 litres');
+// litres(1787);  // 'should return 893 litres');
+// litres(0); // 'should return 0 litres');
