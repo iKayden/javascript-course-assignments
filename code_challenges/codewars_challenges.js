@@ -490,17 +490,19 @@ digitize(0); // => [0]
 
 
 // You get given the time in hours and you need to return the number of litres Nathan will drink, rounded to the smallest value. drinks 0.5 litres of water per hour of cycling.
-const litres = (time) => {
-  let litr = 0;
-  for (let i = 1; i <= time; i++) {
-    litr += 0.5;
-  }
-  return Math.floor(litr);
-};
-// litres(2); // 'should return 1 litre');
-// litres(1.4); // 'should return 0 litres');
-// litres(12.3); // 'should return 6 litres');
-// litres(0.82); // 'should return 0 litres');
-// litres(11.8); // 'should return 5 litres');
-// litres(1787);  // 'should return 893 litres');
-// litres(0); // 'should return 0 litres');
+// ------ My Function
+// const litres = (time) => {
+//   let litr = 0;
+//   for (let i = 1; i <= time; i++) {
+//     litr += 0.5;
+//   }
+//   return Math.floor(litr);
+// };
+//  Code Wars Func
+const litres = (time) => Math.floor(time * 0.5);
+console.log(litres(2)); // 'should return 1 litre');
+console.log(litres(1.4)); // 'should return 0 litres');
+console.log(litres(12.3)); // 'should return 6 litres');
+console.log(litres(0.82)); // 'should return 0 litres');
+console.log(litres(11.8)); // 'should return 5 litres');
+console.log(litres(0)); // 'should return 0 litres');
