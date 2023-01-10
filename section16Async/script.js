@@ -4,6 +4,25 @@ const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 ///////////////////////////////////////
 
+const renderCountry = function(data, className = "") {
+  const html = `
+      <article class="country ${className}">
+      <img class="country__img" src="${data.flag}" />
+      <div class="country__data">
+      <h3 class="country__name">${data.name}</h3>
+      <h4 class="country__region">${data.region}</h4>
+      <p class="country__row"><span>👫</span>${data.population.toLocaleString("en-US")}</p>
+      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+      </div>
+      </article>
+      `;
+  countriesContainer.insertAdjacentHTML("beforeend", html);
+};
+
+const renderError = (msg) => {
+  countriesContainer.insertAdjacentText("beforeend", msg);
+};
 
 // const getCountryData = (country) => {
 
@@ -74,23 +93,6 @@ const countriesContainer = document.querySelector('.countries');
 // req.open("GET", url);
 // req.send();
 
-const renderCountry = function(data, className = "") {
-  const html = `
-      <article class="country ${className}">
-      <img class="country__img" src="${data.flag}" />
-      <div class="country__data">
-      <h3 class="country__name">${data.name}</h3>
-      <h4 class="country__region">${data.region}</h4>
-      <p class="country__row"><span>👫</span>${data.population.toLocaleString("en-US")}</p>
-      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
-      </div>
-      </article>
-      `;
-  countriesContainer.insertAdjacentHTML("beforeend", html);
-  countriesContainer.style.opacity = 1;
-};
-
 const getCountryData = function(country) {
   const url1 = `https://restcountries.com/v2/name/${country}`;
   // promise: 1. pending => 2. settled => fulfilled  / rejected
@@ -108,6 +110,11 @@ const getCountryData = function(country) {
         .then(data => {
           renderCountry(data, "neighbour");
         }); // using parsed data fulfill the promise
-    });
+    })
+    .catch(err => renderError(err.message))
+    .finally(() => countriesContainer.style.opacity = 1); // always(err or success) called in the end
 };
-getCountryData("ukraine");
+
+btn.addEventListener("click", function() {
+  getCountryData("ukraine");
+});
