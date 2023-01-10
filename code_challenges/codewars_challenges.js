@@ -503,3 +503,53 @@ const litres = (time) => Math.floor(time * 0.5);
 // console.log(litres(2)); // 'should return 1 litre');
 // console.log(litres(1.4)); // 'should return 0 litres');
 // console.log(litres(12.3)); // 'should return 6 litres');
+
+function solution(start, finish) {
+  const stepsToClimb = finish - start;
+  const bigJumps = Math.floor(stepsToClimb / 3);
+  const smallJumps = stepsToClimb % 3;
+}
+
+solution(1, 5); // 2
+
+// Make a program that filters a list of strings and returns a list with only your friends name in it.
+// If a name has exactly 4 letters in it, you can be sure that it has to be a friend of yours! Otherwise, you can be sure he's not...
+
+// Ex: Input = ["Ryan", "Kieran", "Jason", "Yous"], Output = ["Ryan", "Yous"];
+
+const friend = friends => friends.filter(friend => friend.length === 4);
+
+// friend(["Ryan", "Kieran", "Mark"]); // ["Ryan", "Mark"]
+// friend(["Ryan", "Jimmy", "123", "4", "Cool Man"]); // ["Ryan"]
+// friend(["Jimm", "Cari", "aret", "truehdnviegkwgvke", "sixtyiscooooool"]); // ["Jimm", "Cari", "aret"]
+// friend(["Love", "Your", "Face", "1"]); // ["Love", "Your", "Face"]
+
+/* We have two consecutive integers k1 and k2, k2 = k1 + 1
+
+We need to calculate the lowest strictly positive integer n, such that: the values nk1 and nk2 have the same digits but in different order. */
+
+function findLowestInt(k1) {
+  let n = 1;
+  let k2 = k1 + 1;
+  while (true) {
+    // Calculate nk1 and nk2
+    let nk1 = n * k1;
+    let nk2 = n * k2;
+
+    // Convert nk1 and nk2 to strings, then sort their characters
+    let nk1Sorted = Array.from(nk1.toString()).sort().join('');
+    let nk2Sorted = Array.from(nk2.toString()).sort().join('');
+    console.log('nk1Sorted', nk1Sorted);
+    console.log('nk2Sorted', nk2Sorted);
+
+    // Check if the sorted strings are equal, indicating that the integers have the same digits
+    if (nk1Sorted === nk2Sorted) {
+      // Print the solution and exit the loop
+      return n;
+    }
+    // If not, increment n and continue
+    n++;
+  }
+}
+findLowestInt(100); // 8919
+findLowestInt(325); //  477
