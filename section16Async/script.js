@@ -93,14 +93,17 @@ const renderError = (msg) => {
 // req.open("GET", url);
 // req.send();
 
+const getJSON = function(url, errMsg = "Something went wrong 😭😭😭") {
+  return fetch(url).then(rawData => {
+    if (!rawData.ok) throw new Error(`${errMsg} (${rawData.status})`);
+    return rawData.json();
+  });
+};
+
 const getCountryData = function(country) {
   const url1 = `https://restcountries.com/v2/name/${country}`;
   // promise: 1. pending => 2. settled => fulfilled  / rejected
-  fetch(url1) // fetch builds a promise for us to consume
-    .then(rawData => {
-      if (!rawData.ok) throw new Error("Country not found");
-      return rawData.json();
-    }) // for resolved values call json method(async) returns promise
+  getJSON(url1, "Country not found") // for resolved values call json method(async) returns promise
     .then(data => {
       renderCountry(...data);
 
@@ -108,14 +111,8 @@ const getCountryData = function(country) {
       const neighbour = data[0].borders?.[3];
       const url2 = `https://restcountries.com/v2/alpha/${neighbour}`;
       // always return the promise to avoid cb hell
-      return fetch(url2)
-        .then(rawData => {
-          if (!rawData.ok) throw new Error("Country not found");
-          return rawData.json();
-        }) // for resolved values call json method(async) returns promise
-        .then(data => {
-          renderCountry(data, "neighbour");
-        }); // using parsed data fulfill the promise
+      return getJSON(url2, "Neighbour country not found") // for resolved values call json method(async) returns promise
+        .then(data => { renderCountry(data, "neighbour"); }); // using parsed data fulfill the promise
     })
     .catch(err => renderError(`${err.message}`))
     .finally(() => countriesContainer.style.opacity = 1); // always(err or success) called in the end
