@@ -92,10 +92,22 @@ const renderCountry = function(data, className = "") {
 };
 
 const getCountryData = function(country) {
-  const url = `https://restcountries.com/v2/name/${country}`;
+  const url1 = `https://restcountries.com/v2/name/${country}`;
   // promise: 1. pending => 2. settled => fulfilled  / rejected
-  fetch(url) // fetch builds a promise for us to consume
+  fetch(url1) // fetch builds a promise for us to consume
     .then(rawData => rawData.json()) // for resolved values call json method(async) returns promise
-    .then(data => renderCountry(...data)); // using parsed data fulfill the promise
+    .then(data => {
+      renderCountry(...data);
+
+      // Neighbor country call
+      const neighbour = data[0].borders?.[0];
+      const url2 = `https://restcountries.com/v2/alpha/${neighbour}`;
+      // always return the promise to avoid cb hell
+      return fetch(url2)
+        .then(rawData => rawData.json()) // for resolved values call json method(async) returns promise
+        .then(data => {
+          renderCountry(data, "neighbour");
+        }); // using parsed data fulfill the promise
+    });
 };
 getCountryData("ukraine");
