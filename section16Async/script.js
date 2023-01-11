@@ -49,9 +49,9 @@ const getCountryData = function(country) {
     .finally(() => countriesContainer.style.opacity = 1); // always(err or success) called in the end
 };
 
-btn.addEventListener("click", function() {
-  whereAmI();
-});
+// btn.addEventListener("click", function() {
+//   whereAmI();
+// });
 
 
 // Code Challenge #1
@@ -110,3 +110,21 @@ const getPosition = () => new Promise((resolve, reject) =>
 //     return wait(1); // return same function as promise
 //   })
 //   .then(() => console.log('I waited for one more second'));
+
+// Code Challenge #2
+
+// PART 1
+const imgContainer = document.querySelector(".images");
+const createImage = (imgPath) => new Promise((resolve, reject) => {
+  const img = document.createElement("img");
+  img.src = imgPath;
+
+  img.addEventListener("load", () => {
+    imgContainer.append(img);
+    resolve(img);
+  });
+
+  img.addEventListener("error", () => reject(new Error("Image not found")));
+});
+
+createImage("img/img-1.jpg");
