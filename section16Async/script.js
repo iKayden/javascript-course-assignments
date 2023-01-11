@@ -66,26 +66,49 @@ const whereAmI = function(lat, lng) {
 
 // whereAmI(52.508, 13.381);
 // whereAmI(19.037, 72.873);
-whereAmI(-33.933, 18.474);
+// whereAmI(-33.933, 18.474);
 
-//////// ASYNC PLAYGROUND
+
+const getPosition = () => new Promise((res, rej) =>
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      const { latitude, longitude } = position.coords;
+      res(whereAmI(latitude, longitude));
+    },
+    err => reject(err)
+  )
+);
+getPosition();
+//////// ASYNC & PROMISES PLAYGROUND
 // console.log('test start'); // 1
 // setTimeout(() => console.log('0 sec timer'), 0); // 4
 // Promise.resolve("resolved promise").then(res => console.log('res', res)); //3
 // console.log('End of test'); //2
 // Creating Promise
-const promise = new Promise((res, rej) => {
-  console.log('Before timeout 🤗');
-  setTimeout(() => {
-    const randN = Math.floor(Math.random() * 10);
-    if (randN >= 5) {
-      res("You win!");
-    } else {
-      rej(new Error("You lose!"));
-    }
-  }, 2000);
-});
-// Consuming promise
-promise
-  .then(res => console.log(res))
-  .catch(err => console.error(err));
+// const promise = new Promise((res, rej) => {
+//   console.log('Before timeout 🤗');
+//   setTimeout(() => {
+//     const randN = Math.floor(Math.random() * 10);
+//     if (randN >= 5) {
+//       res("You win!");
+//     } else {
+//       rej(new Error("You lose!"));
+//     }
+//   }, 2000);
+// });
+// // Consuming promise
+// promise
+//   .then(res => console.log(res))
+//   .catch(err => console.error(err));
+
+// // Function that returns a promise
+// const wait = sec => new Promise((resolve) => {
+//   setTimeout(resolve, sec * 1000);
+// });
+
+// wait(2) //Consuming Promise
+//   .then(() => {
+//     console.log('I waited for 2 seconds');
+//     return wait(1); // return same function as promise
+//   })
+//   .then(() => console.log('I waited for one more second'));
