@@ -38,27 +38,31 @@ const getCountryData = function(country) {
     .then(data => {
       renderCountry(...data);
 
-      // Neighbor country call
-      const neighbour = data[0].borders?.[3];
-      const url2 = `https://restcountries.com/v2/alpha/${neighbour}`;
-      // always return the promise to avoid cb hell
-      return getJSON(url2, "Neighbour country not found") // for resolved values call json method(async) returns promise
-        .then(data => { renderCountry(data, "neighbour"); }); // using parsed data fulfill the promise
+      // // Neighbor country call
+      // const neighbour = data[0].borders?.[3];
+      // const url2 = `https://restcountries.com/v2/alpha/${neighbour}`;
+      // // always return the promise to avoid cb hell
+      // return getJSON(url2, "Neighbour country not found") // for resolved values call json method(async) returns promise
+      //   .then(data => { renderCountry(data, "neighbour"); }); // using parsed data fulfill the promise
     })
     .catch(err => renderError(`${err.message}`))
     .finally(() => countriesContainer.style.opacity = 1); // always(err or success) called in the end
 };
 
 btn.addEventListener("click", function() {
-  getCountryData("ukraine");
+  whereAmI();
 });
 
 
 // Code Challenge #1
 //part 1
 const whereAmI = function(lat, lng) {
-  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
-  return fetch(url)
+  getPosition().then(pos => {
+    const { latitude: lat, longitude: lng } = pos.coords;
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+    return fetch(url);
+  })
+
     .then(rawData => rawData.json())
     .then(data => getCountryData(data.address.country))
     .catch(err => renderError(`${err.message}`));
@@ -68,17 +72,11 @@ const whereAmI = function(lat, lng) {
 // whereAmI(19.037, 72.873);
 // whereAmI(-33.933, 18.474);
 
+// getting user's current location
+const getPosition = () => new Promise((resolve, reject) =>
+  navigator.geolocation.getCurrentPosition(resolve, reject));
 
-const getPosition = () => new Promise((res, rej) =>
-  navigator.geolocation.getCurrentPosition(
-    position => {
-      const { latitude, longitude } = position.coords;
-      res(whereAmI(latitude, longitude));
-    },
-    err => reject(err)
-  )
-);
-getPosition();
+
 //////// ASYNC & PROMISES PLAYGROUND
 // console.log('test start'); // 1
 // setTimeout(() => console.log('0 sec timer'), 0); // 4
