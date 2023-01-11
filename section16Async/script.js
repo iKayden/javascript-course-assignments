@@ -68,3 +68,24 @@ const whereAmI = function(lat, lng) {
 // whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
 
+//////// ASYNC PLAYGROUND
+// console.log('test start'); // 1
+// setTimeout(() => console.log('0 sec timer'), 0); // 4
+// Promise.resolve("resolved promise").then(res => console.log('res', res)); //3
+// console.log('End of test'); //2
+// Creating Promise
+const promise = new Promise((res, rej) => {
+  console.log('Before timeout 🤗');
+  setTimeout(() => {
+    const randN = Math.floor(Math.random() * 10);
+    if (randN >= 5) {
+      res("You win!");
+    } else {
+      rej(new Error("You lose!"));
+    }
+  }, 2000);
+});
+// Consuming promise
+promise
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
