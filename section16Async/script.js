@@ -99,10 +99,6 @@ const getPosition = () => new Promise((resolve, reject) =>
 //   .then(res => console.log(res))
 //   .catch(err => console.error(err));
 
-// // Function that returns a promise
-// const wait = sec => new Promise((resolve) => {
-//   setTimeout(resolve, sec * 1000);
-// });
 
 // wait(2) //Consuming Promise
 //   .then(() => {
@@ -111,6 +107,10 @@ const getPosition = () => new Promise((resolve, reject) =>
 //   })
 //   .then(() => console.log('I waited for one more second'));
 
+// // Function that returns a promise
+const wait = sec => new Promise((resolve) => {
+  setTimeout(resolve, sec * 1000);
+});
 // Code Challenge #2
 
 // PART 1
@@ -118,13 +118,34 @@ const imgContainer = document.querySelector(".images");
 const createImage = (imgPath) => new Promise((resolve, reject) => {
   const img = document.createElement("img");
   img.src = imgPath;
-
+  // function for resolve
   img.addEventListener("load", () => {
     imgContainer.append(img);
     resolve(img);
   });
-
+  // function for reject
   img.addEventListener("error", () => reject(new Error("Image not found")));
 });
 
-createImage("img/img-1.jpg");
+let setImg = ""; //keeping the state of img global to access deeper in the promise chain
+// PART 2
+createImage("img/img-1.jpg")
+  .then(img1 => {
+    console.log('Image 1 loaded');
+    setImg = img1; // setting img path to the global scope
+    return wait(2);
+  }) // consuming promise
+  .then(() => {
+    setImg.style.display = "none";
+    return createImage("img/img-2.jpg");
+  }) // hiding img after two second timer
+  .then(img2 => {
+    console.log('Image 2 loaded');
+    setImg = img2;
+    return wait(2);
+  })
+  .then(() => {
+    console.log('Done');
+    setImg.style.display = "none";
+  })
+  .catch(err => console.error(err)); // add error handler
