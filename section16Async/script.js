@@ -18,6 +18,7 @@ const renderCountry = function(data, className = "") {
       </article>
       `;
   countriesContainer.insertAdjacentHTML("beforeend", html);
+  countriesContainer.style.opacity = 1;
 };
 
 const renderError = (msg) => {
@@ -49,32 +50,25 @@ const getCountryData = function(country) {
     .finally(() => countriesContainer.style.opacity = 1); // always(err or success) called in the end
 };
 
-// btn.addEventListener("click", function() {
-//   whereAmI();
-// });
 
 
 // Code Challenge #1
 //part 1
-const whereAmI = function(lat, lng) {
-  getPosition().then(pos => {
-    const { latitude: lat, longitude: lng } = pos.coords;
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
-    return fetch(url);
-  })
+// const whereAmI = function(lat, lng) {
+//   getPosition().then(pos => {
+//     const { latitude: lat, longitude: lng } = pos.coords;
+//     const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+//     return fetch(url);
+//   })
 
-    .then(rawData => rawData.json())
-    .then(data => getCountryData(data.address.country))
-    .catch(err => renderError(`${err.message}`));
-};
+//     .then(rawData => rawData.json())
+//     .then(data => getCountryData(data.address.country))
+//     .catch(err => renderError(`${err.message}`));
+// };
 
 // whereAmI(52.508, 13.381);
 // whereAmI(19.037, 72.873);
 // whereAmI(-33.933, 18.474);
-
-// getting user's current location
-const getPosition = () => new Promise((resolve, reject) =>
-  navigator.geolocation.getCurrentPosition(resolve, reject));
 
 
 //////// ASYNC & PROMISES PLAYGROUND
@@ -114,38 +108,60 @@ const wait = sec => new Promise((resolve) => {
 // Code Challenge #2
 
 // PART 1
-const imgContainer = document.querySelector(".images");
-const createImage = (imgPath) => new Promise((resolve, reject) => {
-  const img = document.createElement("img");
-  img.src = imgPath;
-  // function for resolve
-  img.addEventListener("load", () => {
-    imgContainer.append(img);
-    resolve(img);
-  });
-  // function for reject
-  img.addEventListener("error", () => reject(new Error("Image not found")));
-});
+// const imgContainer = document.querySelector(".images");
+// const createImage = (imgPath) => new Promise((resolve, reject) => {
+//   const img = document.createElement("img");
+//   img.src = imgPath;
+//   // function for resolve
+//   img.addEventListener("load", () => {
+//     imgContainer.append(img);
+//     resolve(img);
+//   });
+//   // function for reject
+//   img.addEventListener("error", () => reject(new Error("Image not found")));
+// });
 
-let setImg = ""; //keeping the state of img global to access deeper in the promise chain
-// PART 2
-createImage("img/img-1.jpg")
-  .then(img1 => {
-    console.log('Image 1 loaded');
-    setImg = img1; // setting img path to the global scope
-    return wait(2);
-  }) // consuming promise
-  .then(() => {
-    setImg.style.display = "none";
-    return createImage("img/img-2.jpg");
-  }) // hiding img after two second timer
-  .then(img2 => {
-    console.log('Image 2 loaded');
-    setImg = img2;
-    return wait(2);
-  })
-  .then(() => {
-    console.log('Done');
-    setImg.style.display = "none";
-  })
-  .catch(err => console.error(err)); // add error handler
+// let setImg = ""; //keeping the state of img global to access deeper in the promise chain
+// // PART 2
+// createImage("img/img-1.jpg")
+//   .then(img1 => {
+//     console.log('Image 1 loaded');
+//     setImg = img1; // setting img path to the global scope
+//     return wait(2);
+//   }) // consuming promise
+//   .then(() => {
+//     setImg.style.display = "none";
+//     return createImage("img/img-2.jpg");
+//   }) // hiding img after two second timer
+//   .then(img2 => {
+//     console.log('Image 2 loaded');
+//     setImg = img2;
+//     return wait(2);
+//   })
+//   .then(() => {
+//     console.log('Done');
+//     setImg.style.display = "none";
+//   })
+//   .catch(err => console.error(err)); // add error handler
+
+// getting user's current location
+const getPosition = () => new Promise((resolve, reject) =>
+  navigator.geolocation.getCurrentPosition(resolve, reject));
+
+// Consuming Promises with Async/Await
+const whereAmI = async function(country) { // async non blocking call stack
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+  const url1 = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+  // await will stop code execution at this point for the promise to be fulfilled
+  const geoRes = await fetch(url1);
+  const data = await geoRes.json();
+  console.log(data.address.country);
+  const res = await fetch(`https://restcountries.com/v2/name/${data.address.country}`);
+  const dataRes = await res.json();
+  return renderCountry(dataRes[0]);
+};
+
+btn.addEventListener("click", function() {
+  whereAmI("ukraine");
+});
